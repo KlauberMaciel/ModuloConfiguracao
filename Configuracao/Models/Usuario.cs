@@ -12,7 +12,7 @@ namespace Models
         public string NomeUsuario { get; set; }
         public string Email { get; set; }
         public bool Ativo { get; set; }
-        public int Senha { get; set; }
+        public string Senha { get; set; }
         public string CPF { get; set; }
         public List<GrupoUsuario> GruposUsuarios { get; set; }
     }
