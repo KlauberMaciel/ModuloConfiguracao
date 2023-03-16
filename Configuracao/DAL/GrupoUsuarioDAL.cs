@@ -172,7 +172,7 @@ namespace DAL
             }
         }
 
-        public void Altear(GrupoUsuario _GrupoUsuario)
+        public void Alterar(GrupoUsuario _GrupoUsuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try

@@ -186,7 +186,7 @@ namespace DAL
             }
         }
 
-        public void Altear(Usuario _usuario)
+        public void Alterar(Usuario _usuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try

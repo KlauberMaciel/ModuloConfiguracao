@@ -79,7 +79,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<Permissao> BuscarPorTudo(string _descricao)
+        public List<Permissao> BuscarPorTudo()
         {
             List<Permissao> permissaos = new List<Permissao>();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -122,7 +122,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<Permissao> BuscarPorId(string _id)
+        public List<Permissao> BuscarPorId(int _id)
         {
             List<Permissao> permissaos = new List<Permissao>();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -194,7 +194,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public void Excluir(Permissao _permisao)
+        public void Excluir(int _id)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
@@ -204,7 +204,7 @@ namespace DAL
                                     WHERE ID= @ID";
 
                 cmd.CommandType = System.Data.CommandType.Text;
-                SqlParameter sqlParameter = cmd.Parameters.AddWithValue("@ID", _permisao);
+                SqlParameter sqlParameter = cmd.Parameters.AddWithValue("@ID", _id);
 
                 cmd.Connection = cn;
                 cn.Open();

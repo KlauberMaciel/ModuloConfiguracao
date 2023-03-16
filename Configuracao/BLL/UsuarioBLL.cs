@@ -16,7 +16,7 @@ namespace BLL
         public void Alterar(Usuario _usuario)
         {
             ValiDados(_usuario);
-            new Usuario_DAL().Altear(_usuario);
+            new Usuario_DAL().Alterar(_usuario);
         }
         private void ValiDados(Usuario _usuario)
         {
@@ -50,12 +50,12 @@ namespace BLL
             return new Usuario_DAL().BuscarPorCPF(_cpf);
         }
         
-        public List<Usuario> BuscarPorNome(String _nome)
+        public List<Usuario> BuscarPorNome(string _nome)
         {
             return new Usuario_DAL().BuscarPorNome(_nome);
         }
          
-        public Usuario BuscarPorNomeUsuario(String _nomeUsuario)
+        public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
             return new Usuario_DAL().BuscarPorNomeUsuario(_nomeUsuario);
         }
