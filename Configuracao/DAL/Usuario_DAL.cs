@@ -52,8 +52,8 @@ namespace DAL
                 cmd.CommandText = @"SELECT Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario
                                        where Id=@ID";
 
-                cmd.Parameters.AddWithValue("@ID", _id);
                 cmd.CommandType= System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@ID", _id);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
@@ -138,7 +138,7 @@ namespace DAL
             }
         }
          
-        public List<Usuario> BuscarPorTodos(int _id)
+        public List<Usuario> BuscarPorTodos()
         {
             List<Usuario> usuarios = new List<Usuario>();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -273,7 +273,7 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
-
+                        usuarios.Add(usuario);
 
 
 
@@ -292,6 +292,9 @@ namespace DAL
             {
                 cn.Close();
             }
+
         }
+
+
     }
 }
