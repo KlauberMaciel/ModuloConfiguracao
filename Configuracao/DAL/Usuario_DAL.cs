@@ -165,7 +165,7 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
-
+                        usuarios.Add(usuario);
 
 
 
@@ -192,7 +192,7 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"UPDATE Usuario SET @Nome, @NomeUsuario, @Email,@Senha ,@CPF
+                cmd.CommandText = @"UPDATE Usuario SET Nome= @Nome, NomeUsuario= @NomeUsuario, Email= @Email,Senha=@Senha ,CPF = @CPF
                                         Where Id= @ID";
 
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -295,6 +295,55 @@ namespace DAL
 
         }
 
+        public Usuario BuscarPorCPF (string _cpf)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                Usuario usuario = new Usuario();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario
+                                       where CPF = @CPF"
+                ;
+
+                cmd.Parameters.AddWithValue("@NomeUsuario", _cpf);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        usuario = new Usuario();
+                        usuario.Id = Convert.ToInt32(rd["Id"]);
+                        usuario.Nome = rd["Nome"].ToString();
+                        usuario.NomeUsuario = rd["NomeUsuario"].ToString();
+                        usuario.Email = rd["Email"].ToString();
+                        usuario.CPF = rd["CPF"].ToString();
+                        usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
+                        usuario.Senha = rd["Senha"].ToString();
+
+
+
+
+                    }
+
+                }
+                return usuario;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar todos os usuario na buscar", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+        }
 
     }
 }
