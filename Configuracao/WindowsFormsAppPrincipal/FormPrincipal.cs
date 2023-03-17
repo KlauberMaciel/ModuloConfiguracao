@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,28 @@ namespace WindowsFormsAppPrincipal
         public FormPrincipal()
         {
             InitializeComponent();
+            Usuario usuario = new Usuario();
+            usuario.Nome = "Test1";
+            usuario.NomeUsuario = "OIIee";
+            usuario.Ativo = true;
+            usuario.CPF = "0228112388";
+            usuario.Senha = "123334";
+            usuario.Email = "gmail@.com";
+
+            new UsuarioBLL().Inserir(usuario);
+        }
+
+        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(FormBuscarUsuario frm = new FormBuscarUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

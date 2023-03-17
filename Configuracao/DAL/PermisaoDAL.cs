@@ -122,7 +122,7 @@ namespace DAL
                 cn.Close();
             }
         }
-        public List<Permissao> BuscarPorId(int _id)
+        public Permissao BuscarPorId(int _id)
         {
             List<Permissao> permissaos = new List<Permissao>();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
@@ -147,14 +147,14 @@ namespace DAL
                         permissao.Id = Convert.ToInt32(rd["Id"]);
                         permissao.Descrisaao = rd["Descricao"].ToString();
 
-                        permissaos.Add(permissao);
+                        
 
 
 
                     }
 
                 }
-                return permissaos;
+                return permissao;
 
             }
             catch (Exception ex)

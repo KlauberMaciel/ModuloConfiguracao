@@ -140,13 +140,15 @@ namespace DAL
          
         public List<Usuario> BuscarPorTodos()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            
+            List<Usuario> usuarios = new List<Usuario>(); 
+            Usuario usuario = new Usuario();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
                 SqlCommand cmd = new SqlCommand();
 
-                Usuario usuario = new Usuario();
+               
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario";
 
@@ -158,7 +160,7 @@ namespace DAL
                     if (rd.Read())
                     {
                         usuario = new Usuario();
-                        usuario.Id = Convert.ToInt32(rd["Id"]);
+                        //usuario.Id = Convert.ToInt32(rd["Id"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.Email = rd["Email"].ToString();

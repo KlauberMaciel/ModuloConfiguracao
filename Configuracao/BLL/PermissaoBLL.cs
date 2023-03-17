@@ -11,7 +11,7 @@ namespace BLL
         {
             if (_permissao.Descrisaao.Length <= 15)
             {
-                throw new Exception("A Descrisaao deve ter mais de 15 caracteres");
+                throw new Exception("A Descrissao deve ter mais de 15 caracteres");
             }
 
         }
@@ -35,7 +35,7 @@ namespace BLL
             return new PermisaoDAL().BuscarPorTudo();
         }
 
-        public List<Permissao> BuscarPorId(int _id)
+        public Permissao BuscarPorId(int _id)
         {
             return new PermisaoDAL().BuscarPorId(_id);
         }
