@@ -46,7 +46,7 @@ namespace DAL
 
                 GrupoUsuario grupoUsuario = new GrupoUsuario();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT GrupoUsuario, Id From GrupoUsuario";
+                cmd.CommandText = @"SELECT NomeGrupo, Id From GrupoUsuario";
 
 
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -90,7 +90,7 @@ namespace DAL
 
                 GrupoUsuario grupoUsuario = new GrupoUsuario();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT GrupoUsuario, Id From GrupoUsuario
+                cmd.CommandText = @"SELECT NomeGrupo, Id From GrupoUsuario
                                     WHERE GrupoUsuario LIKE @GrupoUsuario";
 
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -136,7 +136,7 @@ namespace DAL
 
                 GrupoUsuario grupoUsuario = new GrupoUsuario();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT GrupoUsuario, Id From GrupoUsuario
+                cmd.CommandText = @"SELECT NomeGrupo, Id From GrupoUsuario
                                     WHERE Id = @Id";
 
                 cmd.CommandType = System.Data.CommandType.Text;

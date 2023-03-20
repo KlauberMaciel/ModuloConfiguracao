@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuscarGrupoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BuscarGrupoUsuario.Designer.cs">
+      <DependentUpon>BuscarGrupoUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="CadastroDeUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BuscarGrupoUsuario.resx">
+      <DependentUpon>BuscarGrupoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CadastroDeUsuario.resx">
       <DependentUpon>CadastroDeUsuario.cs</DependentUpon>
     </EmbeddedResource>

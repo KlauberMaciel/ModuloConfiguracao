@@ -40,5 +40,13 @@ namespace WindowsFormsAppPrincipal
         {
 
         }
+
+        private void gruposUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(BuscarGrupoUsuario frm = new BuscarGrupoUsuario())
+            {
+                frm.ShowDialog();
+            }
+        }
     }
 }

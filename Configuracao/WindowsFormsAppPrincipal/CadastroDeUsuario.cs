@@ -38,7 +38,10 @@ namespace WindowsFormsAppPrincipal
             if (Id == 0)
                 usuarioBindingSource.AddNew();
             else
+            {
                 usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorId(Id);
+              
+            }
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

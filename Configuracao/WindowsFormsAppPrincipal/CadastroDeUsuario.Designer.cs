@@ -35,7 +35,7 @@
             System.Windows.Forms.Label nomeUsuarioLabel;
             System.Windows.Forms.Label senhaLabel;
             System.Windows.Forms.Label label1;
-            this.CadastoUsuario = new System.Windows.Forms.Label();
+            this.CadastoUsuario_label = new System.Windows.Forms.Label();
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nomeTextBox = new System.Windows.Forms.TextBox();
             this.cPFTextBox = new System.Windows.Forms.TextBox();
@@ -109,19 +109,19 @@
             label1.TabIndex = 14;
             label1.Text = "Confimar Senha:";
             // 
-            // CadastoUsuario
+            // CadastoUsuario_label
             // 
-            this.CadastoUsuario.AutoSize = true;
-            this.CadastoUsuario.BackColor = System.Drawing.SystemColors.Control;
-            this.CadastoUsuario.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CadastoUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CadastoUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CadastoUsuario.Location = new System.Drawing.Point(0, 0);
-            this.CadastoUsuario.Name = "CadastoUsuario";
-            this.CadastoUsuario.Size = new System.Drawing.Size(386, 46);
-            this.CadastoUsuario.TabIndex = 0;
-            this.CadastoUsuario.Text = "Cadastro de Usuario";
-            this.CadastoUsuario.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.CadastoUsuario_label.AutoSize = true;
+            this.CadastoUsuario_label.BackColor = System.Drawing.SystemColors.Control;
+            this.CadastoUsuario_label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CadastoUsuario_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CadastoUsuario_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CadastoUsuario_label.Location = new System.Drawing.Point(0, 0);
+            this.CadastoUsuario_label.Name = "CadastoUsuario_label";
+            this.CadastoUsuario_label.Size = new System.Drawing.Size(386, 46);
+            this.CadastoUsuario_label.TabIndex = 0;
+            this.CadastoUsuario_label.Text = "Cadastro de Usuario";
+            this.CadastoUsuario_label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // usuarioBindingSource
             // 
@@ -225,7 +225,7 @@
             this.Controls.Add(this.cPFTextBox);
             this.Controls.Add(nomeLabel);
             this.Controls.Add(this.nomeTextBox);
-            this.Controls.Add(this.CadastoUsuario);
+            this.Controls.Add(this.CadastoUsuario_label);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -241,7 +241,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label CadastoUsuario;
+        private System.Windows.Forms.Label CadastoUsuario_label;
         private System.Windows.Forms.BindingSource usuarioBindingSource;
         private System.Windows.Forms.TextBox nomeTextBox;
         private System.Windows.Forms.TextBox cPFTextBox;
