@@ -37,7 +37,7 @@ namespace BLL
             new Usuario_DAL().Excluir(_id);
         }
         
-        public List<Usuario> BuscarTodos()
+        public List<Usuario> BuscarPorTodos()
         {
             return new Usuario_DAL().BuscarPorTodos();
         }

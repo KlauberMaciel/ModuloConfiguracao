@@ -17,7 +17,7 @@ namespace WindowsFormsAppPrincipal
         public FormPrincipal()
         {
             InitializeComponent();
-            Usuario usuario = new Usuario();
+        /*    Usuario usuario = new Usuario();
             usuario.Nome = "Test1";
             usuario.NomeUsuario = "OIIee";
             usuario.Ativo = true;
@@ -25,7 +25,7 @@ namespace WindowsFormsAppPrincipal
             usuario.Senha = "123334";
             usuario.Email = "gmail@.com";
 
-            new UsuarioBLL().Inserir(usuario);
+            new UsuarioBLL().Inserir(usuario);*/
         }
 
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)

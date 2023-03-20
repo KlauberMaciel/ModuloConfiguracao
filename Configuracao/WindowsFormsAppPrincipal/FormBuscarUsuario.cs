@@ -1,4 +1,5 @@
 ﻿using BLL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace WindowsFormsAppPrincipal
 {
     public partial class FormBuscarUsuario : Form
     {
+      
         public FormBuscarUsuario()
         {
             InitializeComponent();
@@ -25,12 +27,48 @@ namespace WindowsFormsAppPrincipal
 
         private void Buscar_Click(object sender, EventArgs e)
         {
-            usuarioBindingSource.DataSource = new UsuarioBLL().BuscarTodos();
+            usuarioBindingSource.DataSource = new UsuarioBLL().BuscarPorTodos();
         }
 
         private void Adicionar_Click(object sender, EventArgs e)
         {
+            using(CadastroDeUsuario frm = new CadastroDeUsuario())
+            {
+                frm.ShowDialog();
+            }
+            Buscar_Click(null, null);   
+        }
 
+        private void Excluir_Click(object sender, EventArgs e)
+        {
+            if (usuarioBindingSource.Count<= 0 )
+            {
+                MessageBox.Show("Não existo para ser exluido");
+                return;
+            }
+            if(MessageBox.Show("Deseja realmente excluir este registro?","Atenção ", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+
+            int id =((Usuario)usuarioBindingSource.Current).Id;
+            new UsuarioBLL().Excluir(id);
+            usuarioBindingSource.RemoveCurrent();
+
+            MessageBox.Show("Registro Excluido com Sucesso!");
+        }
+
+        private void FormBuscarUsuario_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Alterar_Click(object sender, EventArgs e)
+        {
+            int id = ((Usuario)usuarioBindingSource.Current).Id;
+            using (CadastroDeUsuario frm = new CadastroDeUsuario(id))
+            {
+                frm.ShowDialog();
+            }
+            Buscar_Click(null, null);
         }
     }
 }

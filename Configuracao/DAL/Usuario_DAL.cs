@@ -49,7 +49,7 @@ namespace DAL
                
                 Usuario usuario = new Usuario();
                 cmd.Connection= cn;
-                cmd.CommandText = @"SELECT Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario
+                cmd.CommandText = @"SELECT Id, Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario
                                        where Id=@ID";
 
                 cmd.CommandType= System.Data.CommandType.Text;
@@ -57,9 +57,9 @@ namespace DAL
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                   if (rd.Read())
+                   while (rd.Read())
                     {
-                        usuario = new Usuario();
+                       
                         usuario.Id = Convert.ToInt32(rd["Id"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
@@ -150,17 +150,17 @@ namespace DAL
 
                
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario";
+                cmd.CommandText = "SELECT Id, Nome, NomeUsuario, Email,Senha ,CPF, Ativo From Usuario";
 
               
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if (rd.Read())
+                    while (rd.Read())
                     {
                         usuario = new Usuario();
-                        //usuario.Id = Convert.ToInt32(rd["Id"]);
+                        usuario.Id = Convert.ToInt32(rd["Id"]);
                         usuario.Nome = rd["Nome"].ToString();
                         usuario.NomeUsuario = rd["NomeUsuario"].ToString();
                         usuario.Email = rd["Email"].ToString();
@@ -225,8 +225,8 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"DELETE FROW Usuario 
-                                    WHERE ID= @ID";
+                cmd.CommandText = @"DELETE FROM Usuario 
+                                    WHERE Id= @ID";
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 SqlParameter sqlParameter = cmd.Parameters.AddWithValue("@ID", _id);
