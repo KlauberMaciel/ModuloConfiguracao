@@ -140,7 +140,7 @@ namespace DAL
                                     WHERE Id = @Id";
 
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@GrupoUsuario", +_id);
+                cmd.Parameters.AddWithValue("@Id", +_id);
                 cmd.CommandType = System.Data.CommandType.Text;
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
@@ -206,8 +206,8 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"DELETE FROW GrupoUsuario 
-                                    WHERE ID= @ID";
+                cmd.CommandText = @"DELETE FROM GrupoUsuario 
+                                    WHERE Id= @ID";
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 SqlParameter sqlParameter = cmd.Parameters.AddWithValue("@ID", _id);

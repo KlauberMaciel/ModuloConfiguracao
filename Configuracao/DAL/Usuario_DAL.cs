@@ -347,5 +347,47 @@ namespace DAL
 
         }
 
+        public bool ValidarPermissao(int _idUsuario, int _idPermissao)
+        { 
+           
+        Usuario usuario = new Usuario();
+        SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+
+        cmd.Connection = cn;
+                cmd.CommandText = @"select 1 from Permissao_GrupoUsuario
+                        inner Join Usuario_GrupoUsuario on Permissao_GrupoUsuario.IdGrupoUsuario= Usuario_GrupoUsuario.IdGrupoUsuario
+                        where Usuario_GrupoUsuario.IdUsuario = @IdUsuario and Permissao_GrupoUsuario.IdPermisao=@IdPermissao";
+
+              
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                    {
+                        return true;
+                    }
+
+                        }
+                return false; 
+
+            }
+                  catch (Exception ex)
+                    {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar todos os usuario na buscar", ex);
+                        }
+                finally
+                    {
+    cn.Close();
+                     }
+        }
     }
 }

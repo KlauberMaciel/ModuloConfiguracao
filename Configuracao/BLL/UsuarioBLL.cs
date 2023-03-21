@@ -59,5 +59,16 @@ namespace BLL
         {
             return new Usuario_DAL().BuscarPorNomeUsuario(_nomeUsuario);
         }
+
+        public void  ValidaPermissao(int _idPermissao)
+        {
+           
+           if (! new  Usuario_DAL().ValidarPermissao(Constantes.IdUsuarioLogado, _idPermissao))
+           {
+                throw new Exception("Voce não tem permissão de realizar essa operação. Procurre o admnistrador do sistema");
+           }
+        }
+
+        
     }
 }
