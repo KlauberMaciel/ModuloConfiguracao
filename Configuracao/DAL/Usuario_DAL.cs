@@ -67,8 +67,8 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
+                        usuario.GruposUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
 
-                       
 
 
                     }  
@@ -117,7 +117,7 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
-
+                        usuario.GruposUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
 
 
 
@@ -167,6 +167,7 @@ namespace DAL
                         usuario.CPF = rd["CPF"].ToString();
                         usuario.Ativo = Convert.ToBoolean(rd["Ativo"]);
                         usuario.Senha = rd["Senha"].ToString();
+                        usuario.GruposUsuarios = new GrupoUsuarioDAL().BuscarPorIdUsuario(usuario.Id);
                         usuarios.Add(usuario);
 
 
@@ -348,25 +349,83 @@ namespace DAL
         }
 
         public bool ValidarPermissao(int _idUsuario, int _idPermissao)
-        { 
-           
-        Usuario usuario = new Usuario();
-        SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = cn;
+                cmd.CommandText = @"select 1 from Permissao_GrupoUsuario
+                        inner Join Usuario_GrupoUsuario on Permissao_GrupoUsuario.IdGrupoUsuario= Usuario_GrupoUsuario.IdGrupoUsuario
+                        where Usuario_GrupoUsuario.IdUsuario = @IdUsuario and Permissao_GrupoUsuario.IdPermisao=@IdPermissao";
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    if (rd.Read())
+                        return true;
+                }
+                return false; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao tentar valida permissão os usuario na buscar", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public void AdicionarGrupoUsuario(int _idUsuario, int _idGrupoUsuario)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+            Usuario usuario = new Usuario();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
                 SqlCommand cmd = new SqlCommand();
 
 
-        cmd.Connection = cn;
-                cmd.CommandText = @"select 1 from Permissao_GrupoUsuario
-                        inner Join Usuario_GrupoUsuario on Permissao_GrupoUsuario.IdGrupoUsuario= Usuario_GrupoUsuario.IdGrupoUsuario
-                        where Usuario_GrupoUsuario.IdUsuario = @IdUsuario and Permissao_GrupoUsuario.IdPermisao=@IdPermissao";
+                cmd.Connection = cn;
+                cmd.CommandText = @"insert into Usuario_GrupoUsuario(IdGrupoUsuario, IdUsuario) 
+                                                values(@IdUsuario, @IdGrupoUsuario)";
 
-              
+
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
-                cmd.Parameters.AddWithValue("@IdPermissao", _idPermissao);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+                cn.Open();
+            }
+            catch (Exception ex)
+            {
 
+                throw new Exception("Ocorreu um erro ao tentar vinculor a um usuario", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public bool UsuarioPernceAoGrupo(int _idGrupoUsuario, int _idUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+              
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT 1 From Usuario_GrupoUsuario
+                                        WHERE IdUsuario = @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
@@ -375,19 +434,19 @@ namespace DAL
                         return true;
                     }
 
-                        }
-                return false; 
+                }
+                return false;
 
             }
-                  catch (Exception ex)
-                    {
+            catch (Exception ex)
+            {
 
-                throw new Exception("Ocorreu um erro ao tentar buscar todos os usuario na buscar", ex);
-                        }
-                finally
-                    {
-    cn.Close();
-                     }
+                throw new Exception("Ocorreu um erro ao tentar confirir usuario", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }

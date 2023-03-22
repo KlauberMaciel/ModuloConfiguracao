@@ -33,10 +33,10 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grupoUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.permissaosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.permissaosDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.permissaosBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonBuscar = new System.Windows.Forms.Button();
             this.Adicionar = new System.Windows.Forms.Button();
@@ -46,8 +46,8 @@
             this.Excluir_Permissao = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.permissaosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaosDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.permissaosBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // grupoUsuarioDataGridView
@@ -91,11 +91,6 @@
             // 
             this.grupoUsuarioBindingSource.DataSource = typeof(Models.GrupoUsuario);
             // 
-            // permissaosBindingSource
-            // 
-            this.permissaosBindingSource.DataMember = "Permissaos";
-            this.permissaosBindingSource.DataSource = this.grupoUsuarioBindingSource;
-            // 
             // permissaosDataGridView
             // 
             this.permissaosDataGridView.AllowUserToAddRows = false;
@@ -132,6 +127,11 @@
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 250;
+            // 
+            // permissaosBindingSource
+            // 
+            this.permissaosBindingSource.DataMember = "Permissaos";
+            this.permissaosBindingSource.DataSource = this.grupoUsuarioBindingSource;
             // 
             // textBox1
             // 
@@ -188,6 +188,7 @@
             this.Adicionar_per.TabIndex = 8;
             this.Adicionar_per.Text = "Adicionar";
             this.Adicionar_per.UseVisualStyleBackColor = true;
+            this.Adicionar_per.Click += new System.EventHandler(this.Adicionar_per_Click);
             // 
             // Excluir_Permissao
             // 
@@ -217,10 +218,11 @@
             this.Name = "BuscarGrupoUsuario";
             this.ShowIcon = false;
             this.Text = "Buscar Grupo de Usuario";
+            this.Load += new System.EventHandler(this.BuscarGrupoUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoUsuarioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.permissaosBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.permissaosDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.permissaosBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

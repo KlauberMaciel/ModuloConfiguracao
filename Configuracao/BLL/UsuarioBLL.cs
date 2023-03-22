@@ -10,11 +10,13 @@ namespace BLL
    {
         public void Inserir(Usuario _usuario)
         {
+            ValidaPermissao(2);
            ValiDados(_usuario);
             new Usuario_DAL().Inserir(_usuario);
         }
         public void Alterar(Usuario _usuario)
         {
+           ValidaPermissao(3);
             ValiDados(_usuario);
             new Usuario_DAL().Alterar(_usuario);
         }
@@ -34,29 +36,35 @@ namespace BLL
 
         public void Excluir(int _id)
         {
+           ValidaPermissao(4);
             new Usuario_DAL().Excluir(_id);
         }
         
         public List<Usuario> BuscarPorTodos()
         {
+            ValidaPermissao(8);
             return new Usuario_DAL().BuscarPorTodos();
         }
         public Usuario BuscarPorId(int _id)
         {
+            ValidaPermissao(2);
             return new Usuario_DAL().BuscarPorId(_id);
         }
         public Usuario BuscarPorCPF(string _cpf)
         {
+           ValidaPermissao(2);
             return new Usuario_DAL().BuscarPorCPF(_cpf);
         }
         
         public List<Usuario> BuscarPorNome(string _nome)
         {
+           ValidaPermissao(2);
             return new Usuario_DAL().BuscarPorNome(_nome);
         }
          
         public Usuario BuscarPorNomeUsuario(string _nomeUsuario)
         {
+            ValidaPermissao(2);
             return new Usuario_DAL().BuscarPorNomeUsuario(_nomeUsuario);
         }
 
@@ -69,6 +77,10 @@ namespace BLL
            }
         }
 
-        
+        public void AdicionarGrupo(int _idUsuario, int _idGrupoUsuario)
+        {
+            if (!new Usuario_DAL().UsuarioPernceAoGrupo(_idGrupoUsuario, _idUsuario))
+                new Usuario_DAL().AdicionarGrupoUsuario(_idUsuario, _idGrupoUsuario);
+        }
     }
 }

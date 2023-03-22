@@ -38,7 +38,7 @@ namespace WindowsFormsAppPrincipal
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-
+            Constantes.IdUsuarioLogado = 8;
         }
 
         private void gruposUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)

@@ -82,13 +82,15 @@ namespace DAL
 
         public List<GrupoUsuario> BuscarPorNomeUsuario(string _nomegrupo)
         {
+           
             List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
+             GrupoUsuario grupoUsuario = new GrupoUsuario();
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
                 SqlCommand cmd = new SqlCommand();
 
-                GrupoUsuario grupoUsuario = new GrupoUsuario();
+                
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT NomeGrupo, Id From GrupoUsuario
                                     WHERE GrupoUsuario LIKE @GrupoUsuario";
@@ -183,7 +185,6 @@ namespace DAL
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@NomeGrupo", _GrupoUsuario.NomeGrupo);
-               
                 cmd.Parameters.AddWithValue("@ID", _GrupoUsuario.Id);
                 cmd.Connection = cn;
                 cn.Open();
@@ -220,6 +221,46 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu erro ao tentar excluir um Grupo Usuario no Banco de Dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+        public List<GrupoUsuario> BuscarPorIdUsuario(int _IdUsuario)
+        {
+            List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
+            GrupoUsuario grupoUsuario;
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @" Select GrupoUsuario.Id ,GrupoUsuario.NomeGrupo from GrupoUsuario 
+                                    INNER JOIN		Usuario_GrupoUsuario on GrupoUsuario.Id = Usuario_GrupoUsuario.IdGrupoUsuario
+                                    where Usuario_GrupoUsuario.IdUsuario= @IdUsuario";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@IdUsuario", _IdUsuario);
+                cn.Open();                  
+
+                using(SqlDataReader rd= cmd.ExecuteReader())
+                {
+                    while(rd.Read())
+                    {
+                        grupoUsuario = new GrupoUsuario();
+                        grupoUsuario.Id = Convert.ToInt32(rd["Id"]);
+                        grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
+
+                        grupoUsuarios.Add(grupoUsuario);
+                    }
+                    return grupoUsuarios;
+                }
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu erro ao tentar Alterar um Usuario no Banco de Dados", ex);
             }
             finally
             {

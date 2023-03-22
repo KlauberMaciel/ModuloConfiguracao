@@ -1,5 +1,6 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
 
 namespace Models
@@ -9,5 +10,7 @@ namespace Models
         public int Id { get; set; }
         public string NomeGrupo { get; set; }
         public List<Permissao> Permissaos { get; set; }
+
+     
     }
 }
