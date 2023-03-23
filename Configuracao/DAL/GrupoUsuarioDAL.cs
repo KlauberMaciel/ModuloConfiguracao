@@ -82,18 +82,16 @@ namespace DAL
 
         public List<GrupoUsuario> BuscarPorNomeUsuario(string _nomegrupo)
         {
-           
             List<GrupoUsuario> grupoUsuarios = new List<GrupoUsuario>();
-             GrupoUsuario grupoUsuario = new GrupoUsuario();
+           
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
-            {
+            {  
+                GrupoUsuario grupoUsuario = new GrupoUsuario();
                 SqlCommand cmd = new SqlCommand();
-
-                
                 cmd.Connection = cn;
                 cmd.CommandText = @"SELECT NomeGrupo, Id From GrupoUsuario
-                                    WHERE GrupoUsuario LIKE @GrupoUsuario";
+                                    WHERE NomeGrupo LIKE @GrupoUsuario";
 
                 cmd.CommandType = System.Data.CommandType.Text;
                 cmd.Parameters.AddWithValue("@GrupoUsuario", "% "+ _nomegrupo + "%");
@@ -108,9 +106,6 @@ namespace DAL
                         grupoUsuario.NomeGrupo = rd["NomeGrupo"].ToString();
 
                         grupoUsuarios.Add(grupoUsuario);
-
-
-
                     }
 
                 }

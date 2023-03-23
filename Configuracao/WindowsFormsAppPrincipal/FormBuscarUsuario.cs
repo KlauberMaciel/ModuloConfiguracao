@@ -95,5 +95,10 @@ namespace WindowsFormsAppPrincipal
             }
             Buscar_Click(null, null);
         }
+
+        private void Excluir_grupo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

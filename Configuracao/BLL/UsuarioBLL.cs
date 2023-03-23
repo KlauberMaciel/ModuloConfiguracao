@@ -8,20 +8,23 @@ namespace BLL
 {
     public class UsuarioBLL
    {
-        public void Inserir(Usuario _usuario)
+        public void Inserir(Usuario _usuario, string _confirmaSenha)
         {
             ValidaPermissao(2);
-           ValiDados(_usuario);
+           ValiDados(_usuario, _confirmaSenha);
             new Usuario_DAL().Inserir(_usuario);
         }
-        public void Alterar(Usuario _usuario)
+        public void Alterar(Usuario _usuario, string _confirmaSenha)
         {
            ValidaPermissao(3);
-            ValiDados(_usuario);
+            ValiDados(_usuario, _confirmaSenha);
             new Usuario_DAL().Alterar(_usuario);
         }
-        private void ValiDados(Usuario _usuario)
+        private void ValiDados(Usuario _usuario, string _confirmaSenha)
         {
+            if (_usuario.Senha != _confirmaSenha)
+                throw new Exception("A senha e a Confirmação devem ser iguais");
+
             if (_usuario.Senha.Length <= 3)
             {
                 throw new Exception("A senha deve ter mais de 3 caracteres");

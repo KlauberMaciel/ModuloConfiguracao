@@ -231,6 +231,7 @@
             this.Excluir_grupo.TabIndex = 4;
             this.Excluir_grupo.Text = "Excluir";
             this.Excluir_grupo.UseVisualStyleBackColor = true;
+            this.Excluir_grupo.Click += new System.EventHandler(this.Excluir_grupo_Click);
             // 
             // Adicionar_Grupo
             // 
