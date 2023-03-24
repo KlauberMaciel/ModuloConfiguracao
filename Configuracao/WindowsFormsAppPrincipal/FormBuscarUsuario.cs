@@ -98,7 +98,17 @@ namespace WindowsFormsAppPrincipal
 
         private void Excluir_grupo_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int idGrupoUsuario = ((GrupoUsuario)gruposUsuariosBindingSource.Current).Id;
+                int idUsuario = ((Usuario)usuarioBindingSource.Current).Id;
+                new UsuarioBLL().RemoverGrupoUsuario(idGrupoUsuario, idUsuario);
+                gruposUsuariosBindingSource.RemoveCurrent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

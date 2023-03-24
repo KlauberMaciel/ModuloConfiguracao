@@ -52,6 +52,12 @@
     <Compile Include="adicionaGrupoUsuario.Designer.cs">
       <DependentUpon>adicionaGrupoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdicionarPermissao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdicionarPermissao.Designer.cs">
+      <DependentUpon>AdicionarPermissao.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarGrupoUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="CadastroDeUsuario.Designer.cs">
       <DependentUpon>CadastroDeUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaPermissao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaPermissao.Designer.cs">
+      <DependentUpon>ConsultaPermissao.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBuscarUsuario.cs">
       <SubType>Form</SubType>
@@ -87,11 +99,17 @@
     <EmbeddedResource Include="adicionaGrupoUsuario.resx">
       <DependentUpon>adicionaGrupoUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AdicionarPermissao.resx">
+      <DependentUpon>AdicionarPermissao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BuscarGrupoUsuario.resx">
       <DependentUpon>BuscarGrupoUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CadastroDeUsuario.resx">
       <DependentUpon>CadastroDeUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaPermissao.resx">
+      <DependentUpon>ConsultaPermissao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarUsuario.resx">
       <DependentUpon>FormBuscarUsuario.cs</DependentUpon>

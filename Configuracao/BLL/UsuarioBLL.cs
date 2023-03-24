@@ -85,5 +85,12 @@ namespace BLL
             if (!new Usuario_DAL().UsuarioPernceAoGrupo(_idGrupoUsuario, _idUsuario))
                 new Usuario_DAL().AdicionarGrupoUsuario(_idUsuario, _idGrupoUsuario);
         }
+
+        public void RemoverGrupoUsuario(int _idGrupoUsuario, int _idUsuario)
+        {
+            new Usuario_DAL().RemoverGrupoUsuario(_idGrupoUsuario, _idUsuario);
+        }
+
+       
     }
 }

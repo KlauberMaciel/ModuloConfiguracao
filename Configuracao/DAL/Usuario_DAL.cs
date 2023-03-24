@@ -448,5 +448,33 @@ namespace DAL
                 cn.Close();
             }
         }
+
+        public void RemoverGrupoUsuario(int _idGrupoUsuario, int _idUsuario)
+        {
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = @"DELETE FROM Usuario_GrupoUsuario 
+                                    WHERE IdUsuario= @IdUsuario AND IdGrupoUsuario = @IdGrupoUsuario";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+               cmd.Parameters.AddWithValue("@IdUsuario", _idUsuario);
+                cmd.Parameters.AddWithValue("@IdGrupoUsuario", _idGrupoUsuario);
+
+                cmd.Connection = cn;
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu erro ao tentar excluir um Grupo Usuario no Banco de Dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
     }
 }

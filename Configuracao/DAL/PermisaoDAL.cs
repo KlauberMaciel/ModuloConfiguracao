@@ -14,11 +14,11 @@ namespace DAL
             try
             {
                 SqlCommand cmd = cn.CreateCommand();
-                cmd.CommandText = @"INSERT INTO Permissao(Descrisaao)
-                                      VALUES(@Descrisaao)";
+                cmd.CommandText = @"INSERT INTO Permissao(Descricao)
+                                      VALUES(@Descricao)";
 
                 cmd.CommandType = System.Data.CommandType.Text;
-                cmd.Parameters.AddWithValue("@Nome", _permisao.Descrisaao);
+                cmd.Parameters.AddWithValue("@Descricao", _permisao.Descrisaao);
 
                 cmd.Connection = cn;
                 cn.Open();
@@ -124,7 +124,7 @@ namespace DAL
         }
         public Permissao BuscarPorId(int _id)
         {
-            List<Permissao> permissaos = new List<Permissao>();
+          
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
             try
             {
@@ -132,7 +132,7 @@ namespace DAL
 
                 Permissao permissao = new Permissao();
                 cmd.Connection = cn;
-                cmd.CommandText = @"SELECT Permissao, Id From Permissao
+                cmd.CommandText = @"SELECT Descricao, Id From Permissao
                                     WHERE Id = @Id";
 
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -214,6 +214,52 @@ namespace DAL
             catch (Exception ex)
             {
                 throw new Exception("Ocorreu erro ao tentar excluir um Permissao no Banco de Dados", ex);
+            }
+            finally
+            {
+                cn.Close();
+            }
+        }
+
+        public List<Permissao> BuscarPorIdGrupoUsuario(int _id)
+        {
+            List<Permissao> permissaos = new List<Permissao>();
+            SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                Permissao permissao = new Permissao();
+                cmd.Connection = cn;
+                cmd.CommandText = @"SELECT Permissao, Id From Permissao
+                                    WHERE Id = @Id";
+
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Parameters.AddWithValue("@Id", _id);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cn.Open();
+                using (SqlDataReader rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        permissao = new Permissao();
+                        permissao.Id = Convert.ToInt32(rd["Id"]);
+                        permissao.Descrisaao = rd["Descricao"].ToString();
+
+                        permissaos.Add(permissao);
+
+
+
+                    }
+
+                }
+                return permissaos;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Ocorreu um erro ao tentar buscar id  Permissao na buscar", ex);
             }
             finally
             {

@@ -9,10 +9,10 @@ namespace BLL
     {
         private void ValiDados(Permissao _permissao)
         {
-            if (_permissao.Descrisaao.Length <= 15)
-            {
-                throw new Exception("A Descrissao deve ter mais de 15 caracteres");
-            }
+          //  if (_permissao.Descrisaao.Length <= 3)
+          //  {
+          //      throw new Exception("A Descrissao deve ter mais de 15 caracteres");
+          //  }
 
         }
         public void Inserir(Permissao _permissao)

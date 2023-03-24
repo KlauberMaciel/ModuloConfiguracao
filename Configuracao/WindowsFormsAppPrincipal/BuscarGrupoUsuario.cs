@@ -60,7 +60,14 @@ namespace WindowsFormsAppPrincipal
 
         private void Adicionar_per_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+              
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BuscarGrupoUsuario_Load(object sender, EventArgs e)
