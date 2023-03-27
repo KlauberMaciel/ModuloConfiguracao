@@ -173,9 +173,6 @@
   <data name="&gt;&gt;nomeGrupoTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="grupoUsuarioBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -270,7 +267,7 @@
     <value>800, 450</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>adicionaGrupoUsuario</value>
+    <value>Adicionar Grupo Usuario</value>
   </data>
   <data name="&gt;&gt;grupoUsuarioBindingSource.Name" xml:space="preserve">
     <value>grupoUsuarioBindingSource</value>

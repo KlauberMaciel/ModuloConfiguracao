@@ -62,7 +62,11 @@ namespace WindowsFormsAppPrincipal
         {
             try
             {
-              
+             
+                using (ConsultaPermissao frm = new ConsultaPermissao() )
+                {
+                    frm.Show();
+                }
             }
             catch (Exception ex)
             {

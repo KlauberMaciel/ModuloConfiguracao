@@ -38,7 +38,13 @@ namespace WindowsFormsAppPrincipal
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            Constantes.IdUsuarioLogado = 8;
+            using(FormLogin frm = new FormLogin())
+            {
+                frm.ShowDialog();
+                if(!frm.Logou)
+                    Application.Exit();
+            }
+           
         }
 
         private void gruposUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)

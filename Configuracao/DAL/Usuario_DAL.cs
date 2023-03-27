@@ -92,6 +92,7 @@ namespace DAL
         public Usuario BuscarPorNomeUsuario(string _nomeusuario)
         {
             SqlConnection cn = new SqlConnection(Conexao.StringDeConexao);
+
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -107,7 +108,7 @@ namespace DAL
                 cn.Open();
                 using (SqlDataReader rd = cmd.ExecuteReader())
                 {
-                    if (rd.Read())
+                    while(rd.Read())
                     {
                         usuario = new Usuario();
                         usuario.Id = Convert.ToInt32(rd["Id"]);
